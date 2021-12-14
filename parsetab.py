@@ -6,7 +6,7 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'CAMBIO COLOR Tiempo\n    cambio  :  expression\n            | empty\n    \n    empty :\n    \n    expression : expression CAMBIO expression\n    \n    expression : COLOR\n    '
+_lr_signature = 'CAMBIO COLOR Tiempo\n    cambio  : expression\n            | empty\n    \n    empty :\n    \n    expression : expression CAMBIO expression\n    \n    expression : COLOR\n    '
     
 _lr_action_items = {'COLOR':([0,5,],[4,4,]),'$end':([0,1,2,3,4,6,],[-3,0,-1,-2,-5,-4,]),'CAMBIO':([2,4,6,],[5,-5,5,]),}
 
