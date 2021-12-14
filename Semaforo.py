@@ -63,22 +63,22 @@ def run(i):
 def run(i):
     # if type(i)==tuple:
     #     print ('Cambio de Luz de '+ str(run(i[0]))+ ' a'+ str(run(i[2])))
-    if i[2] == 'ROJO':
-        time.sleep(3)
-        print('Luz actual es de color '+ str(i[2]))
+    
+    if i[2] == 'VERDE':
+        print('Luz actual es de color '+ str(i[0]))   
+    else: print('Luz actual es de color '+ str(i[0]))
+    
+    t_end = time.time() + 5
+    while time.time() < t_end:
+        time.sleep(1)
+        print('.')
+    print('NUEVA LUZ: '+ str(i[2]))
 
-    elif i[2] == 'ROJO':
-        print('Luz actual es de color '+ str(i[2]))
-
-    elif i[2] == 'VERDE':
-        print('Luz actual es de color '+ str(i[2]))
-    elif i[2] == 'AMARILLO':
-        print('Luz actual es de color '+ str(i[2]))
 while True:
     try:
-        s= input('>')
+        s= input('>>')
     except EOFError:
-            break
+        break
     parser.parse(s)
 
 
