@@ -2,7 +2,6 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    CAMBIO
     Tiempo
 
 Grammar
@@ -11,12 +10,12 @@ Rule 0     S' -> cambio
 Rule 1     cambio -> expression
 Rule 2     cambio -> empty
 Rule 3     empty -> <empty>
-Rule 4     expression -> COLOR
+Rule 4     expression -> COLOR CAMBIO COLOR
 
 Terminals, with rules where they appear
 
-CAMBIO               : 
-COLOR                : 4
+CAMBIO               : 4
+COLOR                : 4 4
 Tiempo               : 
 error                : 
 
@@ -33,7 +32,7 @@ state 0
     (0) S' -> . cambio
     (1) cambio -> . expression
     (2) cambio -> . empty
-    (4) expression -> . COLOR
+    (4) expression -> . COLOR CAMBIO COLOR
     (3) empty -> .
 
     COLOR           shift and go to state 4
@@ -65,7 +64,21 @@ state 3
 
 state 4
 
-    (4) expression -> COLOR .
+    (4) expression -> COLOR . CAMBIO COLOR
 
-    $end            reduce using rule 4 (expression -> COLOR .)
+    CAMBIO          shift and go to state 5
+
+
+state 5
+
+    (4) expression -> COLOR CAMBIO . COLOR
+
+    COLOR           shift and go to state 6
+
+
+state 6
+
+    (4) expression -> COLOR CAMBIO COLOR .
+
+    $end            reduce using rule 4 (expression -> COLOR CAMBIO COLOR .)
 

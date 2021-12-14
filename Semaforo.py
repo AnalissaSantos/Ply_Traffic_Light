@@ -38,9 +38,12 @@ def p_empty(i):
 
 def p_expression(i):
     '''
-    expression : COLOR
+    expression : COLOR CAMBIO COLOR
     '''
     i[0]= i[1]
+
+def p_error(i):
+    pass
 
 parser = yacc.yacc()   
 
