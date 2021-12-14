@@ -1,6 +1,7 @@
 import ply.lex as lex
 import ply.yacc as yacc
 import sys
+import time
 
 #Tokenizing
 tokens=[
@@ -22,10 +23,11 @@ def t_error(t):
 lexer = lex.lex()
 
 
+
 #PARSING
 def p_cambio(i):
     '''
-    cambio  :  expression
+    cambio  : expression
             | empty
     '''
     print (i[1])
@@ -50,7 +52,13 @@ def p_expression_color(i):
 def p_error(i):
     print("Syntax Error")
 
-parser = yacc.yacc()   
+parser = yacc.yacc() 
+
+def run(i):
+    time.sleep(6)
+    print('Nuevo estado: '+i[2])
+    
+
 
 while True:
     try:
