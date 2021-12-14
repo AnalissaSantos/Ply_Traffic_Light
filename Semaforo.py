@@ -30,7 +30,7 @@ def p_cambio(i):
     cambio  : expression
             | empty
     '''
-    print (i[1])
+    run(i[1])
 
 def p_empty(i):
     '''
@@ -60,6 +60,20 @@ def run(i):
     
 
 
+def run(i):
+    # if type(i)==tuple:
+    #     print ('Cambio de Luz de '+ str(run(i[0]))+ ' a'+ str(run(i[2])))
+    if i[2] == 'ROJO':
+        time.sleep(3)
+        print('Luz actual es de color '+ str(i[2]))
+
+    elif i[2] == 'ROJO':
+        print('Luz actual es de color '+ str(i[2]))
+
+    elif i[2] == 'VERDE':
+        print('Luz actual es de color '+ str(i[2]))
+    elif i[2] == 'AMARILLO':
+        print('Luz actual es de color '+ str(i[2]))
 while True:
     try:
         s= input('>')
