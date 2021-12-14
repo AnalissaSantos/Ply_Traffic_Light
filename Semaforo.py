@@ -38,20 +38,26 @@ def p_empty(i):
 
 def p_expression(i):
     '''
-    expression : COLOR CAMBIO COLOR
+    expression : expression CAMBIO expression
+    '''
+    i[0]= (i[1],i[2],i[3])
+def p_expression_color(i):
+    '''
+    expression : COLOR
     '''
     i[0]= i[1]
 
 def p_error(i):
-    pass
+    print("Syntax Error")
 
 parser = yacc.yacc()   
 
 while True:
     try:
-        Input= input('')
+        s= input('>')
     except EOFError:
             break
+    parser.parse(s)
 
 
 #lexer.input("ROJO A VERDE")

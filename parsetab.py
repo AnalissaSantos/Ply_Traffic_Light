@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'CAMBIO COLOR Tiempo\n    cambio  :  expression\n            | empty\n    \n    empty :\n    \n    expression : COLOR CAMBIO COLOR\n    '
+_lr_signature = 'CAMBIO COLOR Tiempo\n    cambio  :  expression\n            | empty\n    \n    empty :\n    \n    expression : expression CAMBIO expression\n    \n    expression : COLOR\n    '
     
-_lr_action_items = {'COLOR':([0,5,],[4,6,]),'$end':([0,1,2,3,6,],[-3,0,-1,-2,-4,]),'CAMBIO':([4,],[5,]),}
+_lr_action_items = {'COLOR':([0,5,],[4,4,]),'$end':([0,1,2,3,4,6,],[-3,0,-1,-2,-5,-4,]),'CAMBIO':([2,4,6,],[5,-5,5,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'cambio':([0,],[1,]),'expression':([0,],[2,]),'empty':([0,],[3,]),}
+_lr_goto_items = {'cambio':([0,],[1,]),'expression':([0,5,],[2,6,]),'empty':([0,],[3,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -30,5 +30,6 @@ _lr_productions = [
   ('cambio -> expression','cambio',1,'p_cambio','Semaforo.py',28),
   ('cambio -> empty','cambio',1,'p_cambio','Semaforo.py',29),
   ('empty -> <empty>','empty',0,'p_empty','Semaforo.py',35),
-  ('expression -> COLOR CAMBIO COLOR','expression',3,'p_expression','Semaforo.py',41),
+  ('expression -> expression CAMBIO expression','expression',3,'p_expression','Semaforo.py',41),
+  ('expression -> COLOR','expression',1,'p_expression_color','Semaforo.py',46),
 ]

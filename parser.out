@@ -10,12 +10,13 @@ Rule 0     S' -> cambio
 Rule 1     cambio -> expression
 Rule 2     cambio -> empty
 Rule 3     empty -> <empty>
-Rule 4     expression -> COLOR CAMBIO COLOR
+Rule 4     expression -> expression CAMBIO expression
+Rule 5     expression -> COLOR
 
 Terminals, with rules where they appear
 
 CAMBIO               : 4
-COLOR                : 4 4
+COLOR                : 5
 Tiempo               : 
 error                : 
 
@@ -23,7 +24,7 @@ Nonterminals, with rules where they appear
 
 cambio               : 0
 empty                : 2
-expression           : 1
+expression           : 1 4 4
 
 Parsing method: LALR
 
@@ -32,7 +33,8 @@ state 0
     (0) S' -> . cambio
     (1) cambio -> . expression
     (2) cambio -> . empty
-    (4) expression -> . COLOR CAMBIO COLOR
+    (4) expression -> . expression CAMBIO expression
+    (5) expression -> . COLOR
     (3) empty -> .
 
     COLOR           shift and go to state 4
@@ -51,8 +53,10 @@ state 1
 state 2
 
     (1) cambio -> expression .
+    (4) expression -> expression . CAMBIO expression
 
     $end            reduce using rule 1 (cambio -> expression .)
+    CAMBIO          shift and go to state 5
 
 
 state 3
@@ -64,21 +68,34 @@ state 3
 
 state 4
 
-    (4) expression -> COLOR . CAMBIO COLOR
+    (5) expression -> COLOR .
 
-    CAMBIO          shift and go to state 5
+    CAMBIO          reduce using rule 5 (expression -> COLOR .)
+    $end            reduce using rule 5 (expression -> COLOR .)
 
 
 state 5
 
-    (4) expression -> COLOR CAMBIO . COLOR
+    (4) expression -> expression CAMBIO . expression
+    (4) expression -> . expression CAMBIO expression
+    (5) expression -> . COLOR
 
-    COLOR           shift and go to state 6
+    COLOR           shift and go to state 4
 
+    expression                     shift and go to state 6
 
 state 6
 
-    (4) expression -> COLOR CAMBIO COLOR .
+    (4) expression -> expression CAMBIO expression .
+    (4) expression -> expression . CAMBIO expression
 
-    $end            reduce using rule 4 (expression -> COLOR CAMBIO COLOR .)
+  ! shift/reduce conflict for CAMBIO resolved as shift
+    $end            reduce using rule 4 (expression -> expression CAMBIO expression .)
+    CAMBIO          shift and go to state 5
 
+  ! CAMBIO          [ reduce using rule 4 (expression -> expression CAMBIO expression .) ]
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for CAMBIO in state 6 resolved as shift
